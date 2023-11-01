@@ -1,0 +1,27 @@
+.dataButton {
+  background-color: black;
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  top: 740px;
+  left: 60%;
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &-lines {
+    width: 5rem;
+    height: 0.1rem;
+    background-color: white;
+  }
+
+  &-lines::after {
+    content: '';
+    display: block;
+    height: 0.1rem;
+    background-color: white;
+    transform: rotate(90deg);
+  }
+}
