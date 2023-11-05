@@ -1,5 +1,14 @@
 html {
   font-size: 62.5%; /* 62.5% of 16px = 10px */
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.MuiPaper-root.css-o821ap-MuiPaper-root-MuiPopover-paper-MuiMenu-paper {
+  background-color: transparent;
 }
 
 @font-face {

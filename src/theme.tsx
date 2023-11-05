@@ -68,7 +68,7 @@ let theme = createTheme({
       fontFamily: 'Nohemi',
     },
     h4: {
-      fontSize: '8ren',
+      fontSize: '8rem',
       lineHeight: 1.2,
       fontFamily: 'Nohemi',
     },
@@ -81,6 +81,20 @@ let theme = createTheme({
       fontSize: '6rem',
       lineHeight: 1.2,
       fontFamily: 'Nohemi',
+    },
+    body1: {
+      fontSize: '2rem',
+      lineHeight: 1.4,
+    },
+  },
+  components: {
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          paddingLeft: '20px',
+          paddingRight: '20px',
+        },
+      },
     },
   },
 });
