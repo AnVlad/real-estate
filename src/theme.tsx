@@ -86,6 +86,10 @@ let theme = createTheme({
       fontSize: '2rem',
       lineHeight: 1.4,
     },
+    body2: {
+      fontSize: '3rem',
+      lineHeight: 1.4,
+    },
   },
   components: {
     MuiContainer: {

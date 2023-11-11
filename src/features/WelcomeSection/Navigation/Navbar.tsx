@@ -1,91 +1,64 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  Grid,
-  MenuItem,
-  Select,
-  styled,
-} from '@mui/material';
+import { AppBar, Box, Toolbar, useTheme, useMediaQuery } from '@mui/material';
+
 import DomainIcon from '@mui/icons-material/Domain';
-import { useState } from 'react';
+
 import { StyledButton } from '../../../components/StyledButton';
-// import { CSSProperties } from '@mui/material/styles/createMixins';
+import MobileMenu from './MobileMenu';
+import DesktopMenu from './DesktopMenu';
 
 const Navbar = () => {
-  const [currentPage, setCurrentPage] = useState('home');
   const pages = ['home', 'projects', 'interiors', 'territory', 'listing'];
 
-  const SelectMenuItem = styled(MenuItem)({
-    backgroundColor: 'transparent',
-  });
+  const handleClick = (value: string) => () => {
+    const targetSection = document.getElementById(value);
+
+    if (targetSection) {
+      window.scrollTo({
+        top: targetSection.offsetTop,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <AppBar
       color='transparent'
-      position='static'
+      position={isSmallScreen ? 'fixed' : 'static'}
       elevation={0}
       sx={{ paddingTop: '34px' }}>
-      <Grid container>
-        <Grid item xs={3}>
+      <Toolbar
+        sx={{
+          alignItems: 'flex-start',
+        }}>
+        <Box
+          sx={{
+            flex: 1,
+            display: {
+              xs: 'none',
+              sm: 'block',
+            },
+          }}>
           <DomainIcon sx={{ my: 2, color: '#FFF' }} />
-        </Grid>
-        <Grid item xs={7}>
-          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-            {pages.map((page) => {
-              return (
-                <Button
-                  key={page}
-                  color='white'
-                  disableRipple
-                  disabled={currentPage === page}
-                  onClick={() => setCurrentPage(page)}
-                  sx={{
-                    my: 2,
-                    display: 'block',
-                    textAlign: 'start',
-                    fontSize: '1.2rem',
-                    fontWeight: 500,
-                  }}>
-                  {page}
-                </Button>
-              );
-            })}
-          </Box>
-          <Box
-            sx={{
-              display: { xs: 'block', md: 'none' },
-              textTransform: 'uppercase',
-            }}>
-            <Select
-              value={currentPage}
-              sx={{
-                border: 'none',
-                width: '15rem',
-              }}>
-              {pages.map((page) => {
-                return (
-                  <SelectMenuItem
-                    key={page}
-                    value={page}
-                    onClick={() => setCurrentPage(page)}
-                    sx={{
-                      display: 'block',
-                      textAlign: 'start',
-                      fontSize: '1.4rem',
-                      fontWeight: 500,
-                      textTransform: 'uppercase',
-                      backgroundColor: 'transparent',
-                    }}>
-                    {page}
-                  </SelectMenuItem>
-                );
-              })}
-            </Select>
-          </Box>
-        </Grid>
-        <Grid item xs={2}>
+        </Box>
+
+        <MobileMenu menuList={pages} handleClick={handleClick} />
+
+        {!isSmallScreen && (
+          <DesktopMenu menuList={pages} handleClick={handleClick} />
+        )}
+
+        <Box
+          sx={{
+            flex: 1,
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignSelf: 'flex-start',
+          }}>
           <StyledButton
+            aria-label='to send a message'
             variant='outlined'
             color='white'
             sx={{
@@ -97,8 +70,8 @@ const Navbar = () => {
             }}>
             Let's talk
           </StyledButton>
-        </Grid>
-      </Grid>
+        </Box>
+      </Toolbar>
     </AppBar>
   );
 };

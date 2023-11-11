@@ -3,22 +3,28 @@ import { Container, Box, Typography, styled } from '@mui/material';
 import bedRoomImg from '../../assets/bedroom-with-green-wall-that-has-plant-it 2.png';
 
 const NatureConceptSection = () => {
-  const CustomImage = styled('img')(({ theme }) => ({
+  const CustomImage = styled('img')(({}) => ({
     borderRadius: '340px',
     filter: 'brightness(1.05)',
   }));
   return (
     <Container
       sx={{
-        // height: '120rem',
         display: 'flex',
+        flexDirection: {
+          xs: 'column',
+          sm: 'row',
+        },
         justifyContent: 'space-between',
         paddingTop: '50px',
       }}>
       <Box
-        width={'47%'}
         borderRight={'1px solid rgba(255, 255, 255, 0.20)'}
         sx={{
+          width: {
+            xs: '100%',
+            sm: '47%',
+          },
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
@@ -39,8 +45,11 @@ const NatureConceptSection = () => {
         </Typography>
       </Box>
       <Box
-        width={'47%'}
         sx={{
+          width: {
+            xs: '100%',
+            sm: '47%',
+          },
           display: 'flex',
           flexDirection: 'column',
           gap: { xs: '100px', md: '160px' },

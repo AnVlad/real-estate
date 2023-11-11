@@ -11,7 +11,12 @@ const Car = () => {
     height: '200px',
     transform: 'rotate(90deg) translateX(25%)',
     [theme.breakpoints.down('md')]: {
-      transform: 'rotate(90deg) translateX(25%) scale(0.7)',
+      width: '300px',
+      height: '150px',
+    },
+    [theme.breakpoints.down('sm')]: {
+      width: '200px',
+      height: '100px',
     },
   }));
 
@@ -104,8 +109,13 @@ const Car = () => {
         sx={{
           position: isSticky ? 'fixed' : 'absolute',
           top: isSticky ? '0%' : '',
-          bottom: isScrolled ? 'calc(0% + 200px)' : '',
+          bottom: {
+            xs: isScrolled ? 'calc(0% + 300px)' : '',
+            sm: isScrolled ? 'calc(0% + 250px)' : '',
+            md: isScrolled ? 'calc(0% + 200px)' : '',
+          },
           zIndex: 2,
+          transition: '1s ease-out',
         }}
       />
       <Box
@@ -139,7 +149,7 @@ const Car = () => {
               display={'flex'}
               alignItems={'center'}
               sx={{
-                gap: { xs: '100px', md: '180px' },
+                gap: { xs: '50px', sm: '100px', md: '180px' },
               }}
               position={'absolute'}
               top={`calc(${(elem.min / 15) * 100}% - 100px )`}>
